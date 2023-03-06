@@ -9,6 +9,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
+import java.util.HashMap;
+
 /**
  * Created by LaunchCode
  */
@@ -44,25 +46,43 @@ public class JobTest {
         Assert.assertNotEquals(job4, job5);
     }
 
+    Job job6 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
     @Test
     public void testToStringStartsAndEndsWithNewLine(){
-        Job job6 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         char firstChar = job6.toString().charAt(0);
         char lastChar = job6.toString().charAt(job6.toString().length() - 1);
-        String newLn = "\n";
-        char newLine = newLn.charAt(0);
-        //System.out.println(firstChar);
+        char newLine = '\n';
         Assert.assertEquals(firstChar, newLine);
         Assert.assertEquals(lastChar, newLine);
     }
 
     @Test
     public void testToStringContainsCorrectLabelsAndData(){
+        //job6.getId() = ;
+        String job = job6.toString();
+
+        String jobData = String.format("\nID: %d\n" +
+                "\nName: %s\n" +
+                "\nEmployer: %s\n"+
+                "\nLocation: %s\n" +
+                "\nPosition Type: %s\n" +
+                "\nCore Competency: %s\n", job6.getId(), job6.getName(), job6.getEmployer(), job6.getLocation(), job6.getPositionType(), job6.getCoreCompetency());
+        //System.out.println(job);
+        Assert.assertEquals(job, jobData);
+        //Assert.assertTrue((job.));
 
     }
 
     @Test
     public void testToStringHandlesEmptyField(){
-
+        Job job7 = new Job("Product tester", new Employer("ACME"), new Location(), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        String job7Str = job7.toString();
+        String jobData = String.format("\nID: %d\n" +
+                "Name: %s\n" +
+                "Employer: %s\n"+
+                "Location: %s\n" +
+                "Position Type: %s\n" +
+                "Core Competency: %s\n", job7.getId(), job7.getName(), job7.getEmployer(), "Data not available", job7.getPositionType(), job7.getCoreCompetency());
+        Assert.assertEquals(jobData, job7Str);
     }
 }

@@ -1,5 +1,9 @@
 package org.launchcode.techjobs.oo;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class Job {
@@ -94,13 +98,30 @@ public class Job {
     }
 
     public String toString(){
+        String jobStr = "\n";
 
-        return "\nID: ___"+id+"___\n"+
-                "\nName: ___"+name+"___\n"+
-                "\nEmployer: ___"+employer+"___\n"+
-                "\nLocation: ___"+location+"___\n"+
-                "\nPosition Type: ___"+positionType+"___\n"+
-                "\nCore Competency: ___"+coreCompetency+"___\n"
-                ;
+        LinkedHashMap<String,Object> jobData = new LinkedHashMap<>(6, 0.7F);
+
+
+        jobData.put("ID", id);
+        jobData.put("Name", name);
+        jobData.put("Employer", employer);
+        jobData.put("Location", location);
+        jobData.put("Position Type", positionType);
+        jobData.put("Core Competency", coreCompetency);
+
+
+        for(String i : jobData.keySet()){
+
+            if(jobData.get(i).equals("null")){
+                jobStr = jobStr + i+": Data not available\n";
+                System.out.println(jobData.get(i));
+            }else{
+                System.out.println(jobData.get(i));
+                jobStr = jobStr + i+": "+jobData.get(i)+"\n";
+            }
+            //System.out.println(jobStr);
+        }
+        return jobStr;
     }
 }
