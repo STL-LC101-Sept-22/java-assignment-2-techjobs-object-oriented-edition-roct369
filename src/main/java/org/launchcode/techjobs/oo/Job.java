@@ -98,30 +98,32 @@ public class Job {
     }
 
     public String toString(){
-        String jobStr = "\n";
+        //String jobStr = "\n";
 
-        LinkedHashMap<String,Object> jobData = new LinkedHashMap<>(6, 0.7F);
+        String output = "";
 
-
-        jobData.put("ID", id);
-        jobData.put("Name", name);
-        jobData.put("Employer", employer);
-        jobData.put("Location", location);
-        jobData.put("Position Type", positionType);
-        jobData.put("Core Competency", coreCompetency);
-
-
-        for(String i : jobData.keySet()){
-
-            if(jobData.get(i).equals("null")){
-                jobStr = jobStr + i+": Data not available\n";
-                System.out.println(jobData.get(i));
-            }else{
-                System.out.println(jobData.get(i));
-                jobStr = jobStr + i+": "+jobData.get(i)+"\n";
-            }
-            //System.out.println(jobStr);
+        if(name.equals("")){
+            name = "Data not available";
         }
-        return jobStr;
+        if(employer.getValue().equals("") || employer.getValue() == null){
+            employer.setValue("Data not available");
+        }
+        if(location.getValue().equals("") || location.getValue() == null){
+            location.setValue("Data not available");
+        }
+        if(positionType.getValue().equals("") || positionType.getValue() == null){
+            positionType.setValue("Data not available");
+        }
+        if(coreCompetency.getValue().equals("") || coreCompetency.getValue() == null){
+            coreCompetency.setValue("Data not available");
+        }
+
+        output = String.format("ID: %d\n" +
+                        "Name: %s\n" +
+                        "Employer: %s\n"+
+                        "Location: %s\n" +
+                        "Position Type: %s\n" +
+                        "Core Competency: %s\n", id, name, employer.getValue(), location.getValue(), positionType.getValue(), coreCompetency.getValue());
+        return output;
     }
 }

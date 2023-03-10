@@ -62,11 +62,11 @@ public class JobTest {
         String job = job6.toString();
 
         String jobData = String.format("\nID: %d\n" +
-                "\nName: %s\n" +
-                "\nEmployer: %s\n"+
-                "\nLocation: %s\n" +
-                "\nPosition Type: %s\n" +
-                "\nCore Competency: %s\n", job6.getId(), job6.getName(), job6.getEmployer(), job6.getLocation(), job6.getPositionType(), job6.getCoreCompetency());
+                "Name: %s\n" +
+                "Employer: %s\n"+
+                "Location: %s\n" +
+                "Position Type: %s\n" +
+                "Core Competency: %s\n", job6.getId(), job6.getName(), job6.getEmployer(), job6.getLocation(), job6.getPositionType(), job6.getCoreCompetency());
         //System.out.println(job);
         Assert.assertEquals(job, jobData);
         //Assert.assertTrue((job.));
@@ -75,9 +75,9 @@ public class JobTest {
 
     @Test
     public void testToStringHandlesEmptyField(){
-        Job job7 = new Job("Product tester", new Employer("ACME"), new Location(), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        Job job7 = new Job("Product tester", new Employer("ACME"), new Location(""), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         String job7Str = job7.toString();
-        String jobData = String.format("\nID: %d\n" +
+        String jobData = String.format("ID: %d\n" +
                 "Name: %s\n" +
                 "Employer: %s\n"+
                 "Location: %s\n" +
